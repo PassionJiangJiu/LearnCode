@@ -1,4 +1,4 @@
-arr = [5,2,3,15,25,86,34,90,43,65,89,35,78]
+arr = [5,2,3,15,25,86,34,90,43,65,89,35,78,13,33]
 
 def bubbleSort(arr):
     '''
@@ -43,14 +43,38 @@ def insertionSort(arr):
                 arr[j] = temp
         print('第'+str(i)+'插入排序结果为' + str(arr))
             
- def shellSort(arr):
-     '''希尔排序'''
-            
+def shellSort(arr):
+    '''希尔排序'''
+    if(len(arr)<2):
+        print('数组内元素数不能为1')
+        return 
+    
+    n = len(arr)
+    gap = int(n/2)
+    count = 1
+    while gap > 0:
+        for i in range(gap,len(arr)):
+            temp = arr[i]
+            j = i 
+            while j >= gap and arr[j-gap] > temp :
+                arr[j] = arr[j-gap]
+                arr[j-gap] = temp
+        gap = gap - 1 
+        print('第'+str(count)+'次希尔排序结果为' + str(arr))
+        count = count + 1
+
+def mergeSort(arr):
+    '''归并排序'''
+    if(len(arr)<2):
+        print('数组内元素数不能为1')
+        return 
+    
     
         
                   
-   
+    
 
 # bubbleSort(arr)#冒泡排序
 # selectionSort(arr)#选择排序
 # insertionSort(arr)#插入排序
+# shellSort(arr)#希尔排序
