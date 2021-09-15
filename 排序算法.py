@@ -106,8 +106,39 @@ def quickSort(arr, pivot, end):
     quickSort(arr, low+1, end)
     print(arr)
         
-def 
         
+def buildMaxHeap(arr):
+    '''生成最大堆'''
+    for i in range(math.floor(len(arr)/2),-1,-1):
+        heapify(arr,i)
+def heapify(arr,i):
+    '''生产最大堆'''
+    left = 2*i+1
+    right = 2*i+2
+    largest = i
+    if left < arrLen and arr[left] > arr[largest]:
+        largest = left
+    if  right < arrLen and arr[right] > arr[largest]:
+        largest = right
+    
+    if largest != i :
+        swap(arr,i,largest)
+        heapify(arr,largest)
+def swap(arr,i,j):
+    '''数组数据交换'''
+    arr[i],arr[j] = arr[j],arr[i]
+
+def heapSort(arr):
+    global arrLen
+    arrLen  = len(arr)
+    buildMaxHeap(arr)
+    time = 0
+    for i in range(len(arr)-1,0,-1):
+        time+=1
+        swap(arr,0,i)
+        arrLen = arrLen-1
+        heapify(arr,0)
+        print('第'+str(time)+'次希尔排序结果为' + str(arr))
     
                   
     
@@ -118,3 +149,4 @@ def
 # shellSort(arr)#希尔排序
 # mergeSort(arr)#归并排序
 # quickSort(arr,0,len(arr)-1)#快速排序
+heapSort(arr)#堆排序
