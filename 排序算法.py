@@ -140,7 +140,26 @@ def heapSort(arr):
         heapify(arr,0)
         print('第'+str(time)+'次希尔排序结果为' + str(arr))
     
-                  
+def countingSort(arr):
+    j = 0
+    for i in range(0,len(arr)):
+         if arr[i] > j:
+             j = arr[i]
+    bucketLen = j+1
+    bucket = [0]*bucketLen
+    sortedIndex = 0
+    for i in range(0,len(arr)):
+        # if not bucket[arr[i]]:
+        #     bucket[arr[i]]=0
+        bucket[arr[i]]+=1
+    for j in range(bucketLen):
+        while bucket[j]>0:
+            arr[sortedIndex] = j
+            sortedIndex += 1
+            bucket[j] -= 1
+    print(arr)
+    
+                          
     
 
 # bubbleSort(arr)#冒泡排序
@@ -149,4 +168,5 @@ def heapSort(arr):
 # shellSort(arr)#希尔排序
 # mergeSort(arr)#归并排序
 # quickSort(arr,0,len(arr)-1)#快速排序
-heapSort(arr)#堆排序
+# heapSort(arr)#堆排序
+countingSort(arr)#计数排序
