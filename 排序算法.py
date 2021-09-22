@@ -1,6 +1,6 @@
 import math
 
-arr = [5,2,3,15,25,86,34,90,43,65,89,35,78,13,33]
+arr = [5,2,3,15,25,86,34,90,43,65,89,35,78,13,33,599,1025]
 
 def bubbleSort(arr):
     '''
@@ -141,6 +141,7 @@ def heapSort(arr):
         print('第'+str(time)+'次希尔排序结果为' + str(arr))
     
 def countingSort(arr):
+    '''计数排序'''
     j = 0
     for i in range(0,len(arr)):
          if arr[i] > j:
@@ -160,6 +161,34 @@ def countingSort(arr):
     print(arr)
     
                           
+def bucketSort(arr):
+    '''桶排序'''
+    bucket_range = (max(arr) - min(arr))/len(arr)
+    bucket = [ [] for i in range(math.ceil((max(arr) - min(arr))/bucket_range))]
+    for i in range(len(arr)):
+        bucket[math.floor((arr[i] - min(arr))/bucket_range)].append(arr[i])
+    
+    for j in bucket:
+        countingSort(j)
+    arr1 = []
+    for i in bucket:
+        for j in i:
+            arr1.append(j)
+    print(arr1)
+    
+    
+def radixSort(arr):
+    exp = 0
+    max_num = max(arr)
+    
+    while max_num//exp > 0 :
+        bucket = [[] for i in range(10)]
+        for i in range(len(arr)):
+            bucket[arr[i]//10**exp%10].append(arr[i])
+        
+         
+        
+        
     
 
 # bubbleSort(arr)#冒泡排序
@@ -169,4 +198,5 @@ def countingSort(arr):
 # mergeSort(arr)#归并排序
 # quickSort(arr,0,len(arr)-1)#快速排序
 # heapSort(arr)#堆排序
-countingSort(arr)#计数排序
+# countingSort(arr)#计数排序
+# bucketSort(arr)#桶排序
