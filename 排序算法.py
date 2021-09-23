@@ -178,14 +178,22 @@ def bucketSort(arr):
     
     
 def radixSort(arr):
+    '''基数排序'''
     exp = 0
     max_num = max(arr)
     
-    while max_num//exp > 0 :
+    while max_num//(10**exp) > 0:
         bucket = [[] for i in range(10)]
         for i in range(len(arr)):
             bucket[arr[i]//10**exp%10].append(arr[i])
         
+        arr.clear()
+        for i in range(len(bucket)):
+            for j in bucket[i]:
+                arr.append(j)
+        exp+=1
+        print(arr)
+
         
          
         
@@ -201,3 +209,4 @@ def radixSort(arr):
 # heapSort(arr)#堆排序
 # countingSort(arr)#计数排序
 # bucketSort(arr)#桶排序
+radixSort(arr)#基数排序
